@@ -1,1 +1,1 @@
-"# products" 
+# This python file is to record the product you buy and the price of the product
