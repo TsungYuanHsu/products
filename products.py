@@ -1,12 +1,18 @@
-# read file
+import os #operating system
+
 products = []
-with open('products.csv', 'r') as f:
-	for line in f:
-		if 'Product,Price' in line:
-			continue # directly jump to next loop, meaning skip line 7 & 8 
-		name, price = line.strip().split(',') # strip \n, and split string into string list [name, price]
-		products.append([name, price])
-print(products)
+if os.path.isfile('products.csv'): # Check if the csv file exists or not
+	print('File exists and found!')
+	# read file
+	with open('products.csv', 'r') as f:
+		for line in f:
+			if 'Product,Price' in line:
+				continue # directly jump to next loop, meaning skip line 7 & 8 
+			name, price = line.strip().split(',') # strip \n, and split string into string list [name, price]
+			products.append([name, price])
+	print(products)
+else:
+	print('File is not found!')
 
 # User input
 while True:
@@ -26,6 +32,7 @@ for p in products:
 
 # write user input into csv
 with open('products.csv', 'w') as f:
+	f.write('This is my purchase record\n')
 	f.write('Product,Price\n')
 	for p in products:
 		f.write(p[0] + ',' + p[1] + '\n')
